@@ -1,0 +1,32 @@
+<div class="card border-light mb-3" style="max-width: 50rem;">
+    <div class="card-body">
+        <div class="card-header">
+            <span><a class="btn btn-success" (click)="addItem()">Add</a></span>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{item.title}}</td>
+                    <td>{{item.amount}}</td>
+                    <span><a [routerLink]="['/items','view',item.id]" class="btn btn-sm btn-info">View</a></span>
+                    <span><a [routerLink]="['/items',item.id,'edit']" class="btn btn-sm btn-warning">Edit</a></span>
+                    <span><a [routerLink]="['/items']" class="btn btn-sm btn-danger"
+                            (click)="deleteItem(item.id)">Delete</a></span>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="mesgdelete" class="alert alert-success" role="alert">
+    {{mesgdelete}}
+</div>

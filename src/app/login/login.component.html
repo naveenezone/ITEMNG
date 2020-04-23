@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+      <div>
+        <input type="text" name="username" placeholder="Username" [(ngModel)]="username">
+      </div>
+      <div>
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="password">
+      </div>
+      <button type="button" class="btn btn-primary" (click)=handleLogin()>Login</button>
+    </div>
+  </div>
+  
+  <div *ngIf="invalidLogin" class="alert alert-primary" role="alert">
+    Invalid Login
+  </div>
+
