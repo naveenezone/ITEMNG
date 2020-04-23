@@ -1,0 +1,20 @@
+<div class="card" style="width: 18rem;">
+    <!-- <img src="assets/img/{{item.name}}.jpg" class="card-img-top" alt="..."> -->
+    <div class="card-body">
+        <h5 class="card-title" *ngIf="item">{{item.title}}</h5>
+
+        <table class="table table-hover">
+            <tbody>
+                <tr>
+                    <th> ID</th>
+                    <td *ngIf="item">{{item.id}}</td>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <td *ngIf="item">{{item.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a [routerLink]="['/items']" class="btn btn-primary">Go back</a>
+    </div>
+</div>
