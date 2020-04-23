@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/model/item.model';
 import { ItemDataService } from '../shared/service/data/item-data.service';
 import { Router } from '@angular/router';
+import { BasicAuthService } from '../shared/service/auth/basic-auth.service';
 
 @Component({
   selector: 'app-item-list',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-
+  private username = this.authService.getAuthenticatedUser();
   public items: Item[];
   // private items: Item [];
   private mesgResgetItem;
@@ -17,7 +18,7 @@ export class ItemListComponent implements OnInit {
   private mesgErrResdelItem: string;
   public mesgdelete: any;
 
-  constructor(private itemDataService: ItemDataService, private router: Router) { }
+  constructor(private itemDataService: ItemDataService, private router: Router, private authService: BasicAuthService ) { }
 
   // ngOnInit(): void {
   //   this.items=this.itemDataService.getItems();
@@ -53,7 +54,7 @@ export class ItemListComponent implements OnInit {
 
     this.itemDataService.deleteItem(id).subscribe(response => {
       this.mesgResgetItem = response;
-      console.log(this.mesgResgetItem);
+      // console.log(this.mesgResgetItem);
       this.mesgdelete = `Delete of Item ${id} - '${this.mesgResgetItem.title}' successfull!`
       this.refreshItems();
 
@@ -66,7 +67,7 @@ export class ItemListComponent implements OnInit {
   }
 
   refreshItems() {
-    this.itemDataService.getItems('sam').subscribe(response => {
+    this.itemDataService.getItems(this.username).subscribe(response => {
       this.items = response
     },
       error => {

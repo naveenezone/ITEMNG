@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HardcodeauthService } from '../shared/service/auth/hardcodeauth.service';
+import { BasicAuthService } from '../shared/service/auth/basic-auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +8,7 @@ import { HardcodeauthService } from '../shared/service/auth/hardcodeauth.service
 })
 export class MenuComponent implements OnInit {
 
-  constructor(public authService: HardcodeauthService) { }
+  constructor(public authService: BasicAuthService) { }
 
   ngOnInit(): void {
   }

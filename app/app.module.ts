@@ -14,7 +14,8 @@ import { ErrorComponent } from './error/error.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponent } from './item-list/item-detail/item-detail.component';
 import { ItemEditComponent } from './item-list/item-edit/item-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorBasicAuthService } from './shared/service/http/http-interceptor-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorBasicAuthService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
